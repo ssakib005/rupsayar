@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+
+        var isInIFrame = (window.self !== window.top) ? true : false;
+
+        if (!isInIFrame) {
+            var jsData = ["showcase-cta", "https:\/\/websitedemos.net\/home-garden-decor-02\/wp-content\/plugins\/astra-sites-server\/admin\/showcase-cta\/switcher\/dist\/style-main.css?ver=308d53dc52d1fcf8ca1e"];
+            var style = document.createElement('link');
+            style.setAttribute('id', jsData[0]);
+            style.setAttribute('rel', 'stylesheet');
+            style.setAttribute('type', 'text/css');
+            style.setAttribute('media', 'all');
+            style.setAttribute('href', jsData[1]);
+
+            document.head.appendChild(style);
+        }
+    </script>
+    <script type="text/javascript">
+
+        var isInIFrame = (window.self !== window.top) ? true : false;
+
+        if (!isInIFrame) {
+            var jsData = ["showcase-cta-google-fonts", "\/\/fonts.googleapis.com\/css?family=DM%20Sans%3A400%2C500%2C700&subset=latin%2Clatin-ext"];
+            var style = document.createElement('link');
+            style.setAttribute('id', jsData[0]);
+            style.setAttribute('rel', 'stylesheet');
+            style.setAttribute('type', 'text/css');
+            style.setAttribute('media', 'all');
+            style.setAttribute('href', jsData[1]);
+
+            document.head.appendChild(style);
+        }
+    </script>
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Rupsayar.com</title>
+    <link rel="stylesheet" id="astra-theme-css-css" href="wp-content/themes/astra/assets/css/minified/main.min_ver_4.6.4.css" media="all">
+    <link href="~/Content/template-sheet.css" rel="stylesheet" />
+    <link href="~/Content/theam/layout-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/theam/smallscreen-grid.min.css" rel="stylesheet" />
+    <link href="~/Content/theam/grid.min.css" rel="stylesheet" />
+
+    <link href="~/Content/theam/icons.css" rel="stylesheet" />
+    <link href="~/Content/theam/frontend.css" rel="stylesheet" />
+    <link href="~/Content/theam/swiper.css" rel="stylesheet" />
+    <link href="~/Content/theam/post-5.css" rel="stylesheet" />
+    <link href="~/Content/theam/blocks.css" rel="stylesheet" />
+    <link href="~/Content/theam/post-13.css" rel="stylesheet" />
+    <link href="~/Content/theam/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/theam/solid.css" rel="stylesheet" />
+    <link href="~/Content/theam/brands.css" rel="stylesheet" />
+</head>
+
+<body class="home page-template-default page page-id-13 wp-custom-logo theme-astra woocommerce-no-js ast-desktop ast-page-builder-template ast-no-sidebar astra-4.6.4 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header elementor-default elementor-kit-5 elementor-page elementor-page-13">
+
+    @RenderBody()
+
+    <script src="~/Scripts/theam/jquery.js"></script>
+    <script src="~/Scripts/theam/jquery-migrate.js"></script>
+    <script src="~/Scripts/theam/jquery.blockUI.js"></script>
+    <script src="~/Scripts/theam/add-to-cart.js"></script>
+    <script src="~/Scripts/theam/js.cookie.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
