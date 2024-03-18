@@ -5596,3 +5596,6 @@ select, .select2-container .select2-selection--single {
 .woocommerce form .form-row .required {
     visibility: visible;
 }
+.ast-loop-product__link h2 {
+    font-size: 1rem !important;
+}
