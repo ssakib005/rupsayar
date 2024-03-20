@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace rupsayar.Models
+namespace rupsayar.Models.VM
 {
     public class Tbl_Product_VM
     {

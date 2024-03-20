@@ -1,4 +1,5 @@
 ﻿using rupsayar.Models;
+using rupsayar.Models.VM;
 using rupsayar.Service;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,18 @@ namespace rupsayar.Controllers
         }
         public ActionResult Index()
         {
-            List<Tbl_Product> tbl_Products = _productService.GetProductsByCondition(x=>x.IsActive);
-            
+            HomeVM homeVM = new HomeVM();
+            homeVM.Products = _productService.GetProductsByCondition(x => x.IsActive).Take(4).ToList();
             ViewBag.Title = "Home Page";
-            return View();
+            return View(homeVM);
+        }
+
+        public ActionResult AllProducts()
+        {
+            HomeVM homeVM = new HomeVM();
+            homeVM.Products = _productService.GetProductsByCondition(x => x.IsActive);
+            ViewBag.Title = "All Products";
+            return View(homeVM);
         }
     }
 }

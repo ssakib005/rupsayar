@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model rupsayar.Models.VM.HomeVM
+
+<div id="content" class="site-content">
+    <div class="ast-container">
+        <div id="primary" class="content-area primary">
+            <main id="main" class="site-main">
+                <article class="post-13 page type-page status-publish ast-article-single" id="post-13" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+                    <header class="entry-header ast-no-title ast-header-without-markup">
+                    </header>
+                    <div class="entry-content clear" itemprop="text">
+                        <div data-elementor-type="wp-page" data-elementor-id="13" class="elementor elementor-13">
+                            
+                            <div class="elementor-element elementor-element-0a5062a e-flex e-con-boxed e-con e-parent" data-id="0a5062a" data-element_type="container" data-settings='{"content_width":"boxed"}' data-core-v316-plus="true">
+                                <div class="e-con-inner">
+                                    <div class="elementor-element elementor-element-251a6cd e-con-full e-flex e-con e-child" data-id="251a6cd" data-element_type="container" data-settings='{"content_width":"full"}'>
+                                        <div class="elementor-element elementor-element-6920ac8 elementor-widget elementor-widget-heading" data-id="6920ac8" data-element_type="widget" data-widget_type="heading.default">
+                                            <div class="elementor-widget-container">
+                                                <h2 class="elementor-heading-title elementor-size-default">All Products</h2>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-3b7388e elementor-widget elementor-widget-shortcode" data-id="3b7388e" data-element_type="widget" data-widget_type="shortcode.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="elementor-shortcode">
+                                                    @Html.Partial("~/Views/Shared/ProductList.cshtml", Model.Products)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+</div>
+@*<div class="astra-mobile-cart-overlay"></div>*@
+<div id="astra-mobile-cart-drawer" class="astra-cart-drawer">
+    <div class="astra-cart-drawer-header">
+        <button type="button" class="astra-cart-drawer-close" aria-label="Close Cart Drawer">
+            <span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-close-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path></svg></span>
+        </button>
+        <div class="astra-cart-drawer-title">
+            Shopping Cart
+        </div>
+    </div>
+    <div class="astra-cart-drawer-content ">
+        <div class="widget woocommerce widget_shopping_cart"><div class="widget_shopping_cart_content"></div></div>
+    </div>
+</div>
