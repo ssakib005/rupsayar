@@ -1,8 +1,37 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model rupsayar.Models.VM.HomeVM
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
 
+    ul.pagination li {
+        display: inline;
+    }
+
+    ul.pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+    ul.pagination li a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    ul.pagination li a:hover:not(.active) {
+        background-color: #ddd;
+    }
+</style>
+@model IPagedList<rupsayar.Models.Tbl_Product>
+@using PagedList.Mvc;
+@using PagedList;
 <div id="content" class="site-content">
     <div class="ast-container">
         <div id="primary" class="content-area primary">
@@ -12,7 +41,7 @@
                     </header>
                     <div class="entry-content clear" itemprop="text">
                         <div data-elementor-type="wp-page" data-elementor-id="13" class="elementor elementor-13">
-                            
+
                             <div class="elementor-element elementor-element-0a5062a e-flex e-con-boxed e-con e-parent" data-id="0a5062a" data-element_type="container" data-settings='{"content_width":"boxed"}' data-core-v316-plus="true">
                                 <div class="e-con-inner">
                                     <div class="elementor-element elementor-element-251a6cd e-con-full e-flex e-con e-child" data-id="251a6cd" data-element_type="container" data-settings='{"content_width":"full"}'>
@@ -24,9 +53,13 @@
                                         <div class="elementor-element elementor-element-3b7388e elementor-widget elementor-widget-shortcode" data-id="3b7388e" data-element_type="widget" data-widget_type="shortcode.default">
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-shortcode">
-                                                    @Html.Partial("~/Views/Shared/ProductList.cshtml", Model.Products)
+                                                    @Html.Partial("~/Views/Shared/ProductList.cshtml", Model)
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div style="margin-left: 4%;">
+                                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                            @Html.PagedListPager(Model, page => Url.Action("AllProducts", new { page }))
                                         </div>
                                     </div>
                                 </div>

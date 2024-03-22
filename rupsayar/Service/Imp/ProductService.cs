@@ -1,4 +1,5 @@
 ﻿using rupsayar.Models;
+using rupsayar.Models.VM;
 using rupsayar.Repository;
 using rupsayar.Repository.Imp;
 using System;
@@ -21,6 +22,10 @@ namespace rupsayar.Service.Imp
         public List<Tbl_Product> GetProductsByCondition(Expression<Func<Tbl_Product, bool>> expression) 
         {
             return _productRepository.GetProductsByCondition(expression).ToList();
+        }
+        public List<Tbl_Product> GetProductsByConditionWithPagination(Expression<Func<Tbl_Product, bool>> expression, PagedListVM pagedListVM, out int totalCount) 
+        {
+            return _productRepository.GetProductsByConditionWithPagination(expression,pagedListVM, out totalCount).ToList();
         }
         public void Add(Tbl_Product T)
         {

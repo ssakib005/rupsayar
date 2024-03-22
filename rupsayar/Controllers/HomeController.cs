@@ -1,4 +1,5 @@
-﻿using rupsayar.Models;
+﻿using PagedList;
+using rupsayar.Models;
 using rupsayar.Models.VM;
 using rupsayar.Service;
 using System;
@@ -23,13 +24,18 @@ namespace rupsayar.Controllers
             ViewBag.Title = "Home Page";
             return View(homeVM);
         }
-
-        public ActionResult AllProducts()
+        public ActionResult AllProducts(int? page)
         {
-            HomeVM homeVM = new HomeVM();
-            homeVM.Products = _productService.GetProductsByCondition(x => x.IsActive);
+            PagedListVM pagedListVM = new PagedListVM();
+            pagedListVM.Page = (page ?? 1);
+            pagedListVM.ItemsPerPage = 12;
+            int totalCount;
+
+            List<Tbl_Product> tbl_Products = _productService.GetProductsByConditionWithPagination(x=>x.IsActive == true, pagedListVM,out totalCount);
+            var utbl_ProductsAsIPagedList = new StaticPagedList<Tbl_Product>(tbl_Products, pagedListVM.Page, pagedListVM.ItemsPerPage, totalCount);
+            
             ViewBag.Title = "All Products";
-            return View(homeVM);
+            return View(utbl_ProductsAsIPagedList);
         }
     }
 }
