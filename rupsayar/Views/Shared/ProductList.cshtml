@@ -7,11 +7,20 @@
         {
             <li class="ast-article-single desktop-align-left tablet-align-left mobile-align-left product type-product status-publish instock product_cat-all-products product_cat-garden-decor product_cat-new-arrival has-post-thumbnail shipping-taxable purchasable product-type-simple">
                 <div class="astra-shop-thumbnail-wrap">
-                    <a href="https://websitedemos.net/home-garden-decor-02/product/hanging-plant/"
+                    <a href="@Url.Action("ProductDetails", new { item.Id })"
                        class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                        <img decoding="async" width="285" height="382"
-                             src="@Url.Content(item.Tbl_ProductImages[0].FilePath)"
-                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail">
+                        @if (item.Tbl_ProductImages.Count > 0)
+                        {
+                            <img decoding="async" width="285" height="382"
+                                 src="@Url.Content(item.Tbl_ProductImages[0].FilePath)"
+                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail">
+                        }
+                        else
+                        {
+                            <img decoding="async" width="285" height="382"
+                                 src="/Attachments/Products/No_Image_Available.jpg"
+                                 class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail">
+                        }
                     </a>
                     <a href="?add-to-cart=79" data-quantity="1" class="ast-on-card-button ast-select-options-trigger product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="79" data-product_sku aria-label="Add to cart: &#8220;Hanging Plant&#8221;" rel="nofollow">
                         <span class="ast-card-action-tooltip"> Add to cart </span> <span class="ahfb-svg-iconset">

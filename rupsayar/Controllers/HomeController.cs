@@ -1,4 +1,5 @@
 ﻿using PagedList;
+using rupsayar.Helper;
 using rupsayar.Models;
 using rupsayar.Models.VM;
 using rupsayar.Service;
@@ -36,6 +37,20 @@ namespace rupsayar.Controllers
             
             ViewBag.Title = "All Products";
             return View(utbl_ProductsAsIPagedList);
+        }
+
+        public ActionResult ProductDetails(long id)
+        {
+            Tbl_Product tbl_Product = _productService.GetProductsByCondition(x => x.Id == id && x.IsActive == true).SingleOrDefault();
+            Tbl_Product_VM tbl_Product_VM = new Tbl_Product_VM();
+            if (tbl_Product != null) 
+            {
+                tbl_Product_VM = new Utility().ConvertProductModelToVM(tbl_Product);
+                tbl_Product_VM.RelatedProducts =  _productService.GetProductsByCondition(x => x.IsActive == true && x.Tbl_CategoryId == x.Tbl_CategoryId).Take(4).ToList();
+            }
+
+            ViewBag.Title = "Product Details";
+            return View(tbl_Product_VM);
         }
     }
 }

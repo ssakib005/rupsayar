@@ -194,6 +194,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Utility.cs" />
     <Compile Include="Migrations\202402241818315_initial migration.cs" />
     <Compile Include="Migrations\202402241818315_initial migration.designer.cs">
       <DependentUpon>202402241818315_initial migration.cs</DependentUpon>
@@ -316,6 +317,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\ProductList.cshtml" />
     <Content Include="Views\Home\AllProducts.cshtml" />
+    <Content Include="Views\Home\ProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
