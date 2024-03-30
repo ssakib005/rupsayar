@@ -34,6 +34,7 @@ namespace rupsayar.Repository.Imp
                 data.ModifyBy = HttpContext.Current.User.Identity.Name;
 
                 Set.Add(entity);
+                _context.SaveChanges();
             }
             catch (Exception e)
             {
@@ -62,6 +63,8 @@ namespace rupsayar.Repository.Imp
                     entry = _context.Entry(entity);
                 }
                 entry.State = EntityState.Modified;
+
+                _context.SaveChanges();
             }
             catch (Exception es)
             {
@@ -71,6 +74,8 @@ namespace rupsayar.Repository.Imp
         public void Remove(TEntity entity)
         {
             Set.Remove(entity);
+
+            _context.SaveChanges();
         }
     }
 }

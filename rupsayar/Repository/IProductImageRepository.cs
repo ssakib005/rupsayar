@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace rupsayar.Repository
 {
-    public interface ICategoryRepository
+    public interface IProductImageRepository :IRepository<Tbl_ProductImages>
     {
-        List<Tbl_Category> GetCategoryByCondition(Expression<Func<Tbl_Category, bool>> expression);
+        List<Tbl_ProductImages> GetProductImageByCondition(Expression<Func<Tbl_ProductImages, bool>> expression);
     }
 }

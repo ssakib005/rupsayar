@@ -27,5 +27,21 @@ namespace rupsayar.Helper
 
             return tbl_Product_VM;
         }
+
+        public Tbl_Product ConvertProductVMToModel(Tbl_Product_VM tbl_Product_VM)
+        {
+            Tbl_Product tbl_Product = new Tbl_Product();
+
+            tbl_Product.Id = tbl_Product_VM.Id;
+            tbl_Product.Name = tbl_Product_VM.Name;
+            tbl_Product.Description = tbl_Product_VM.Description;
+            tbl_Product.Tbl_CategoryId = tbl_Product_VM.Tbl_CategoryId;
+            tbl_Product.UnitPrice = tbl_Product_VM.UnitPrice;
+            tbl_Product.Quantity = tbl_Product_VM.Quantity;
+            tbl_Product.IsNewArrival = tbl_Product_VM.IsNewArrival;
+            tbl_Product.IsActive = tbl_Product_VM.IsActive;
+
+            return tbl_Product;
+        }
     }
 }

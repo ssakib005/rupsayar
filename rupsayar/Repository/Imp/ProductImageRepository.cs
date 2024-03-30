@@ -7,13 +7,13 @@ using System.Web;
 
 namespace rupsayar.Repository.Imp
 {
-    public class CategoryRepository: Repository<Tbl_Category>, ICategoryRepository
+    public class ProductImageRepository: Repository<Tbl_ProductImages>, IProductImageRepository
     {
-        internal CategoryRepository(ApplicationDbContext context)
+        internal ProductImageRepository(ApplicationDbContext context)
           : base(context)
         {
         }
-        public List<Tbl_Category> GetCategoryByCondition(Expression<Func<Tbl_Category, bool>> expression) 
+        public List<Tbl_ProductImages> GetProductImageByCondition(Expression<Func<Tbl_ProductImages, bool>> expression) 
         {
             return Set.Where(expression).ToList();
         }

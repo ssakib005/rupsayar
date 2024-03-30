@@ -17,6 +17,7 @@ namespace rupsayar.Models.VM
         public virtual List<Tbl_ProductVariant> Tbl_ProductVariants { get; set; }
         public bool IsNewArrival { get; set; }
         public virtual List<Tbl_ProductRate> Tbl_ProductRates { get; set; }
+        public virtual List<HttpPostedFileBase> Tbl_ProductImageList { get; set; }
         public virtual List<Tbl_ProductImages> Tbl_ProductImages { get; set; }
         public virtual List<Tbl_Product> RelatedProducts { get; set; }
         public bool IsActive { get; set; }

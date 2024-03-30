@@ -47,6 +47,8 @@ namespace rupsayar
             // TODO: Register your type's mappings here.
             
             container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<IProductImageService, ProductImageService>();
+            container.RegisterType<ICategoryService, CategoryService>();
 
             container.RegisterType<AccountController>(new InjectionConstructor());
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
