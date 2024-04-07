@@ -38,7 +38,6 @@ namespace rupsayar.Controllers
             ViewBag.Title = "All Products";
             return View(utbl_ProductsAsIPagedList);
         }
-
         public ActionResult ProductDetails(long id)
         {
             Tbl_Product tbl_Product = _productService.GetProductsByCondition(x => x.Id == id && x.IsActive == true).SingleOrDefault();

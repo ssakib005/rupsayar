@@ -78,7 +78,19 @@ namespace rupsayar.Controllers
                 return RedirectToAction("CreateProduct", new { message = "error", fullMessage = "Something went wrong! please try again" });
             }
         }
+        public ActionResult ProductList(int? page)
+        {
+            PagedListVM pagedListVM = new PagedListVM();
+            pagedListVM.Page = (page ?? 1);
+            pagedListVM.ItemsPerPage = 12;
+            int totalCount;
 
+            List<Tbl_Product> tbl_Products = _productService.GetProductsByConditionWithPagination(x => x.IsActive == true, pagedListVM, out totalCount);
+            var utbl_ProductsAsIPagedList = new StaticPagedList<Tbl_Product>(tbl_Products, pagedListVM.Page, pagedListVM.ItemsPerPage, totalCount);
+
+            ViewBag.Title = "Product List";
+            return View(utbl_ProductsAsIPagedList);
+        }
         private List<Tbl_ProductImages> ProcessImage(Tbl_Product_VM tbl_Product_VM)
         {
             try

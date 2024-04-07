@@ -21,7 +21,7 @@ namespace rupsayar.Repository.Imp
         public List<Tbl_Product> GetProductsByConditionWithPagination(Expression<Func<Tbl_Product, bool>> expression, PagedListVM pagedListVM, out int totalCount)
         {
             totalCount = Set.Where(expression).Count();
-            return Set.Where(expression).OrderByDescending(x => x.Id).Skip(pagedListVM.ItemsPerPage * (pagedListVM.Page - 1)).Take(pagedListVM.ItemsPerPage).ToList();
+            return Set.Include("Tbl_Category").Where(expression).OrderByDescending(x => x.Id).Skip(pagedListVM.ItemsPerPage * (pagedListVM.Page - 1)).Take(pagedListVM.ItemsPerPage).ToList();
         }
     }
 }
