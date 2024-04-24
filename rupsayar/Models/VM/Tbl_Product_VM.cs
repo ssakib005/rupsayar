@@ -25,6 +25,7 @@ namespace rupsayar.Models.VM
         public virtual List<Tbl_ProductRate> Tbl_ProductRates { get; set; }
         [Required(ErrorMessage = "Image is required.")]
         public virtual List<HttpPostedFileBase> Tbl_ProductImageList { get; set; }
+        public virtual List<HttpPostedFileBase> Tbl_ProductImageEditList { get; set; }
         public virtual List<Tbl_ProductImages> Tbl_ProductImages { get; set; }
         public virtual List<Tbl_Product> RelatedProducts { get; set; }
         public bool IsActive { get; set; }
