@@ -11,7 +11,7 @@ namespace rupsayar.Models.VM
         public long Id { get; set; }
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Description is required.")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Category is required.")]
         public long Tbl_CategoryId { get; set; }

@@ -43,6 +43,7 @@ namespace rupsayar.Controllers
             try
             {
                 Tbl_Product tbl_Product = new Utility().ConvertProductVMToModel(tbl_Product_VM);
+                tbl_Product.IsActive = true;
                 var attachmentlist = ProcessImage(tbl_Product_VM.Tbl_ProductImageList);
                 try
                 {
@@ -160,6 +161,34 @@ namespace rupsayar.Controllers
                 return RedirectToAction("ProductEdit", new { message = "error", fullMessage = "Something went wrong! please try again" });
             }
         }
+        [HttpPost]
+        public string ProductDelete(int Id)
+        {
+            Tbl_Product tbl_Product = _productService.GetProductsByCondition(x => x.Id == Id && x.IsActive == true).SingleOrDefault();
+            tbl_Product.IsActive = false;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    try
+                    {
+                        _productService.Update(tbl_Product);
+                        scope.Complete();
+
+                        return "success";
+                    }
+                    catch (Exception e)
+                    {
+                        Transaction.Current.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return "failed";
+            }
+        }
         public ActionResult ProductDetails(int id, string message = "", string fullMessage = "")
         {
             List<Tbl_Category> tbl_Categories = _categoryService.GetCategoryByCondition(x => x.IsActive);
@@ -184,6 +213,172 @@ namespace rupsayar.Controllers
 
             return View(tbl_Product_VM);
         }
+
+        public ActionResult CreateCategory(string message = "", string fullMessage = "")
+        {
+            if (message == "success")
+                ViewBag.SuccessMessage = "Category added successfully!";
+            else if (message == "error")
+                ViewBag.ErrorMessage = fullMessage;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCategory(Tbl_Category_VM tbl_Category_VM)
+        {
+            try
+            {
+                Tbl_Category tbl_Category = new Tbl_Category();
+                tbl_Category.IsActive = true;
+                tbl_Category.CategoryName = tbl_Category_VM.CategoryName;
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        try
+                        {
+                            _categoryService.Add(tbl_Category);
+                            scope.Complete();
+
+                            return RedirectToAction("CreateCategory", new { message = "success" });
+                        }
+                        catch (Exception e)
+                        {
+                            Transaction.Current.Rollback();
+                            throw;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("CreateCategory", new { message = "error", fullMessage = "Something went wrong! please try again" });
+            }
+        }
+        public ActionResult CategoryList(int? page)
+        {
+            PagedListVM pagedListVM = new PagedListVM();
+            pagedListVM.Page = (page ?? 1);
+            pagedListVM.ItemsPerPage = 12;
+            int totalCount;
+
+            List<Tbl_Category> tbl_Categories = _categoryService.GetCategoryByConditionWithPagination(x => x.IsActive == true, pagedListVM, out totalCount);
+            var tbl_CategoriesAsIPagedList = new StaticPagedList<Tbl_Category>(tbl_Categories, pagedListVM.Page, pagedListVM.ItemsPerPage, totalCount);
+
+            ViewBag.Title = "Category List";
+            return View(tbl_CategoriesAsIPagedList);
+        }
+        public ActionResult CategoryEdit(int id, string message = "", string fullMessage = "")
+        {
+            Tbl_Category tbl_Category = _categoryService.GetCategoryByCondition(x => x.Id == id && x.IsActive == true).SingleOrDefault();
+            if (string.IsNullOrEmpty(message) && tbl_Category == null)
+            {
+                ViewBag.ErrorMessage = "No category found !";
+                return View();
+            }
+
+            Tbl_Category_VM tbl_Category_VM = new Tbl_Category_VM();
+            if (tbl_Category != null)
+                tbl_Category_VM = new Utility().ConvertCategoryModelToVM(tbl_Category);
+
+            if (message == "success")
+                ViewBag.SuccessMessage = "Category updated successfully!";
+            else if (message == "error")
+                ViewBag.ErrorMessage = fullMessage;
+
+            return View(tbl_Category_VM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CategoryEdit(Tbl_Category_VM tbl_Category_VM)
+        {
+            try
+            {
+                Tbl_Category tbl_Category = _categoryService.GetCategoryByCondition(x => x.Id == tbl_Category_VM.Id && x.IsActive == true).SingleOrDefault();
+                tbl_Category.CategoryName = tbl_Category_VM.CategoryName;
+
+                try
+                {
+                    using (var scope = new TransactionScope())
+                    {
+                        try
+                        {
+                            _categoryService.Update(tbl_Category);
+                            scope.Complete();
+
+                            return RedirectToAction("CategoryEdit", new { message = "success" });
+                        }
+                        catch (Exception e)
+                        {
+                            Transaction.Current.Rollback();
+                            throw;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("CategoryEdit", new { message = "error", fullMessage = "Something went wrong! please try again" });
+            }
+        }
+        
+        [HttpPost]
+        public string CategoryDelete(int Id)
+        {
+            Tbl_Category tbl_Category = _categoryService.GetCategoryByCondition(x => x.Id == Id && x.IsActive == true).SingleOrDefault();
+            tbl_Category.IsActive = false;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    try
+                    {
+                        _categoryService.Update(tbl_Category);
+                        scope.Complete();
+
+                        return "success";
+                    }
+                    catch (Exception e)
+                    {
+                        Transaction.Current.Rollback();
+                        throw;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return "failed";
+            }
+        }
+        public ActionResult CategoryDetails(int id, string message = "", string fullMessage = "")
+        {
+            Tbl_Category tbl_Category = _categoryService.GetCategoryByCondition(x => x.Id == id && x.IsActive == true).SingleOrDefault();
+            if (string.IsNullOrEmpty(message) && tbl_Category == null)
+            {
+                ViewBag.ErrorMessage = "No category found !";
+                return View();
+            }
+
+            Tbl_Category_VM tbl_Category_VM = new Tbl_Category_VM();
+            if (tbl_Category != null)
+                tbl_Category_VM = new Utility().ConvertCategoryModelToVM(tbl_Category);
+
+            if (message == "success")
+                ViewBag.SuccessMessage = "Category updated successfully!";
+            else if (message == "error")
+                ViewBag.ErrorMessage = fullMessage;
+
+            return View(tbl_Category_VM);
+        }
+
         private List<Tbl_ProductImages> ProcessImage(List<HttpPostedFileBase> Tbl_ProductImages)
         {
             try

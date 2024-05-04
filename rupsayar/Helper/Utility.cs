@@ -52,8 +52,16 @@ namespace rupsayar.Helper
             tbl_Product.UnitPrice = tbl_Product_VM.UnitPrice;
             tbl_Product.Quantity = tbl_Product_VM.Quantity;
             tbl_Product.IsNewArrival = tbl_Product_VM.IsNewArrival;
-            tbl_Product.IsActive = tbl_Product_VM.IsActive;
             return tbl_Product;
+        }
+        public Tbl_Category_VM ConvertCategoryModelToVM(Tbl_Category tbl_Category)
+        {
+            Tbl_Category_VM tbl_Category_VM = new Tbl_Category_VM();
+            tbl_Category_VM.Id = tbl_Category.Id;
+            tbl_Category_VM.CategoryName = tbl_Category.CategoryName;
+            tbl_Category_VM.IsActive = tbl_Category.IsActive;
+
+            return tbl_Category_VM;
         }
     }
 }

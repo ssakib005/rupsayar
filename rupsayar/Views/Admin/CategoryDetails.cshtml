@@ -1,0 +1,30 @@
+﻿@model rupsayar.Models.VM.Tbl_Category_VM
+
+@{
+    ViewBag.Title = "CategoryDetails";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Edit Product</h2>
+<link href="~/AdminLTE/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+@using (Html.BeginForm("CategoryEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "../Admin/CategoryList")
+</div>

@@ -217,6 +217,7 @@
     <Compile Include="Models\VM\HomeVM.cs" />
     <Compile Include="Models\VM\PagedListVM.cs" />
     <Compile Include="Models\VM\ResponseResult.cs" />
+    <Compile Include="Models\VM\Tbl_Category_VM.cs" />
     <Compile Include="Models\VM\Tbl_Product_VM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Imp\ProductImageRepository.cs" />
@@ -2502,6 +2503,10 @@
     <Content Include="Views\Admin\ProductList.cshtml" />
     <Content Include="Views\Admin\ProductEdit.cshtml" />
     <Content Include="Views\Admin\ProductDetails.cshtml" />
+    <Content Include="Views\Admin\CreateCategory.cshtml" />
+    <Content Include="Views\Admin\CategoryList.cshtml" />
+    <Content Include="Views\Admin\CategoryEdit.cshtml" />
+    <Content Include="Views\Admin\CategoryDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
